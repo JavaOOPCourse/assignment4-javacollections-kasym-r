@@ -13,6 +13,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int choice;
 
+        studentService.initializeStudents();
+        appointmentService.initializeAppointments();
+        issueService.initializeIssues();
+        actionService.initializeActions();
+
         do {
             System.out.println("===== 🎓 Smart University Service System =====");
             System.out.println("1. Show Students");
@@ -25,29 +30,50 @@ public class Main {
             System.out.print("Choose option: ");
 
             choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
+
                 case 1:
-                    // TODO
+                    studentService.printStudents();
+                    studentService.findHighestGPA();
                     break;
+
                 case 2:
-                    // TODO
+                    appointmentService.showFirstAndLast();
+                    appointmentService.printAppointments();
                     break;
+
                 case 3:
-                    // TODO
+                    issueService.showMostUrgent();
+                    issueService.printRemainingIssues();
                     break;
+
                 case 4:
-                    // TODO
+                    actionService.showFirstAndLast();
+                    actionService.printHistory();
                     break;
+
                 case 5:
-                    // TODO
+                    System.out.print("Enter issue description: ");
+                    String description = scanner.nextLine();
+
+                    System.out.print("Enter urgency (1 = highest): ");
+                    int urgency = scanner.nextInt();
+                    scanner.nextLine();
+
+                    issueService.addNewIssue(description, urgency);
+                    System.out.println("Issue added");
                     break;
+
                 case 6:
-                    // TODO
+                    actionService.undoLastAction();
                     break;
+
                 case 7:
                     System.out.println("Exiting... 👋");
                     break;
+
                 default:
                     System.out.println("Invalid option ❌");
             }
